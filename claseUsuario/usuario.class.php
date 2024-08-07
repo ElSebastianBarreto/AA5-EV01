@@ -19,4 +19,20 @@
                 header('HTTP/1.1 404 Cliente no se ha creado correctamente');
             }
         }
+
+
+        public static function infoUsuario($usuario){
+            $database = new Connection();
+            $conn = $database->getConnection();
+            $stmt = $conn->prepare('SELECT * FROM usuarios where usuario=:usuario');
+            $stmt->bindParam(':usuario',$usuario);
+            if($stmt->execute()){
+                $result = $stmt->fetchAll();
+                echo json_encode($result);
+                header('HTTP/1.1 201 OK');
+            } else {
+                header('HTTP/1.1 404 No se ha podido consultar la info');
+            }
+        }
+
     }
