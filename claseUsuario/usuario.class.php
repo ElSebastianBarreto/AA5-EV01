@@ -14,9 +14,9 @@
          
 
             if($stmt->execute()){
-                header('HTTP/1.1 201 Cliente creado correctamente');
+                header('HTTP/1.1 201 Usuario creado correctamente');
             } else {
-                header('HTTP/1.1 404 Cliente no se ha creado correctamente');
+                header('HTTP/1.1 404 Usuario no se ha creado correctamente');
             }
         }
 
