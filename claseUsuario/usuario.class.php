@@ -35,4 +35,20 @@
             }
         }
 
+public static function login($usuario,$clave){    $database = new Connection();
+    $conn = $database->getConnection();
+    $stmt = $conn->prepare('SELECT * FROM usuarios WHERE usuario=:usuario AND clave=:clave');
+    $stmt->bindParam(':usuario', $usuario);
+    $stmt->bindParam(':clave', $clave);
+    
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $result = $stmt->fetch();
+        echo json_encode(["message" => "Login correcto", "usuario" => $result['usuario']]);
+        header('HTTP/1.1 200 OK');
+    } else {
+        echo json_encode(["message" => "la clave o usuario son incorrectos"]);
+        header('HTTP/1.1 401 Unauthorized');
+    }
+
+}
     }
