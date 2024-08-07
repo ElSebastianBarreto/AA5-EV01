@@ -1,4 +1,5 @@
 <?php
+//configuracion para la conexion con la base de datos
 class Connection
 {
   public $host = 'localhost';
